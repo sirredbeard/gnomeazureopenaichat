@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gnomeazureopenaichat", "gnomeazureopenaichat.csproj", "{76C60988-BB1B-4493-900F-18803E0735DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76C60988-BB1B-4493-900F-18803E0735DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C60988-BB1B-4493-900F-18803E0735DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C60988-BB1B-4493-900F-18803E0735DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C60988-BB1B-4493-900F-18803E0735DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4E16C54-71E9-4624-94C9-40CB373EDA43}
+	EndGlobalSection
+EndGlobal
