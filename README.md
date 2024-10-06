@@ -11,7 +11,7 @@ Requires:
 
 * An Azure OpenAI deployment. Configure the endpoint URI, API key, deployment name in the 'info' panel.
 
-To run:
+To run from source:
 
 ```
 git clone https://github.com/sirredbeard/gnomeazureopenaichat
