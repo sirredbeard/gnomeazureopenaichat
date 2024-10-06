@@ -10,3 +10,12 @@ Uses:
 Requires:
 
 * An Azure OpenAI deployment. Configure the endpoint URI, API key, deployment name in the 'info' panel.
+
+To run:
+
+```
+git clone https://github.com/sirredbeard/gnomeazureopenaichat
+cd gnomeazureopenaichat
+dotnet restore
+dotnet run
+```
