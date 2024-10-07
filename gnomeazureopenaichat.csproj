@@ -6,9 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RuntimeIdentifiers>linux-arm64</RuntimeIdentifiers>
-    <PublishAot>true</PublishAot>
-    <PublishTrimmed>true</PublishTrimmed>
-    <OptimizationPreference>Speed</OptimizationPreference>       
+    <SelfContained>true</SelfContained>
+    <OptimizationPreference>Speed</OptimizationPreference>      
   </PropertyGroup>
 
   <ItemGroup>
