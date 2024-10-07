@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.ClientModel;
+using System.Reflection;
 using Gtk;
 using Azure;
 using Azure.AI.OpenAI;
@@ -14,7 +15,7 @@ class Program
     static string endpoint = "";
     static string systemMessage = "";
     static string deployment = "";
-    static string configFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "chatapp.conf");
+    static string configFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".gnomeazureopenaichat");
 
     static void Main(string[] args)
     {
@@ -108,34 +109,37 @@ class Program
 
     static void ShowInfoDialog(Window parent)
     {
-        var dialog = new Dialog("API Configuration", parent, DialogFlags.Modal);
-        var endpointEntry = new Entry { Text = endpoint };
-        var apiKeyEntry = new Entry { Text = apiKey };
-        var deploymentEntry = new Entry { Text = deployment };
-        var systemMessageEntry = new Entry { Text = systemMessage };
-
-        dialog.ContentArea.PackStart(new Label("Endpoint:"), false, false, 0);
-        dialog.ContentArea.PackStart(endpointEntry, false, false, 0);
-        dialog.ContentArea.PackStart(new Label("API Key:"), false, false, 0);
-        dialog.ContentArea.PackStart(apiKeyEntry, false, false, 0);
-        dialog.ContentArea.PackStart(new Label("Deployment:"), false, false, 0);
-        dialog.ContentArea.PackStart(deploymentEntry, false, false, 0);        
-        dialog.ContentArea.PackStart(new Label("System Message:"), false, false, 0);
-        dialog.ContentArea.PackStart(systemMessageEntry, false, false, 0);
-
-        var saveButton = new Button("Save");
-        saveButton.Clicked += (sender, e) =>
+        using (var dialog = new Dialog("API Configuration", parent, DialogFlags.Modal))
         {
-            endpoint = endpointEntry.Text;
-            apiKey = apiKeyEntry.Text;
-            deployment = deploymentEntry.Text;
-            systemMessage = systemMessageEntry.Text;
-            SaveConfig();
-            dialog.Destroy();
-        };
+            var endpointEntry = new Entry { Text = endpoint };
+            var apiKeyEntry = new Entry { Text = apiKey };
+            var deploymentEntry = new Entry { Text = deployment };
+            var systemMessageEntry = new Entry { Text = systemMessage };
 
-        dialog.ActionArea.PackStart(saveButton, false, false, 0);
-        dialog.ShowAll();
+            dialog.ContentArea.PackStart(new Label("Endpoint:"), false, false, 0);
+            dialog.ContentArea.PackStart(endpointEntry, false, false, 0);
+            dialog.ContentArea.PackStart(new Label("API Key:"), false, false, 0);
+            dialog.ContentArea.PackStart(apiKeyEntry, false, false, 0);
+            dialog.ContentArea.PackStart(new Label("Deployment:"), false, false, 0);
+            dialog.ContentArea.PackStart(deploymentEntry, false, false, 0);
+            dialog.ContentArea.PackStart(new Label("System Message:"), false, false, 0);
+            dialog.ContentArea.PackStart(systemMessageEntry, false, false, 0);
+
+            var saveButton = new Button("Save");
+            saveButton.Clicked += (sender, e) =>
+            {
+                endpoint = endpointEntry.Text;
+                apiKey = apiKeyEntry.Text;
+                deployment = deploymentEntry.Text;
+                systemMessage = systemMessageEntry.Text;
+                SaveConfig();
+                dialog.Destroy();
+            };
+
+            dialog.ActionArea.PackStart(saveButton, false, false, 0);
+            dialog.ShowAll();
+            dialog.Run();
+        }
     }
 
     static void LoadConfig()
@@ -143,7 +147,7 @@ class Program
         if (File.Exists(configFilePath))
         {
             var lines = File.ReadAllLines(configFilePath);
-            if (lines.Length >=4)
+            if (lines.Length >= 4)
             {
                 apiKey = lines[0];
                 endpoint = lines[1];
